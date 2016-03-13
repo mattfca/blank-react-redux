@@ -7,26 +7,41 @@ class Login extends Component {
     router: PropTypes.object
   };
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      errorMessage: null
+    };
+  }
+
+
   componentWillMount(){
     if(this.props.isAuthenticated) this.context.router.push('/');
   }
 
   onSubmit(props){
-    let login = this.props.loginUser(props);
-    login.then(function(resp){
-      if(resp.type == LOGIN_FAILURE){
-        console.log("Login failure:", resp.message);
+    let self = this;
+    let login = this.props.loginUser(props).then(function(resp){
+      if(resp){
+        if(resp.type == LOGIN_FAILURE){
+          self.setState({errorMessage: resp.message});
+        }
+      }else{
+        this.context.router.push('/');
       }
     })
   }
 
   render(){
-    const { fields: { email, password }, handleSubmit, isAuthenticated } = this.props;
-    console.log(isAuthenticated);
+    const { fields: { email, password }, handleSubmit, isAuthenticated, errorMessage } = this.props;
+
     return (
         <form className="form-signin" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <h2 className="form-signin-heading">Please sign in</h2>
-
+          <div className="text-help has-danger">
+            {this.state.errorMessage}
+          </div>
           <div className={`form-group ${email.touched && email.invalid && 'has-danger'}`}>
             <label>Email</label>
             <input type="email" className="form-control" {...email} />

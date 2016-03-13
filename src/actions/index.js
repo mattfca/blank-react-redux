@@ -44,7 +44,6 @@ export function loginUser(creds) {
     dispatch(requestLogin(creds));
 
     return request.then(function(resp){
-      console.log(resp);
       if(resp.data.success){
         // succesful authentication
         localStorage.setItem('id_token', resp.data.token)

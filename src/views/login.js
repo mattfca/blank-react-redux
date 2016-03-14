@@ -27,16 +27,20 @@ class Login extends Component {
           self.setState({errorMessage: resp.message});
         }
       }else{
-        this.context.router.push('/');
+        this.context.router.push('/dashboard');
       }
     })
   }
 
   render(){
     const { fields: { email, password }, handleSubmit, isAuthenticated, errorMessage } = this.props;
+    var loginFormStyle = {
+      width: '350px',
+      margin: '20px auto'
+    };
 
     return (
-        <form className="form-signin" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+        <form className="form-signin" style={loginFormStyle} onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <h2 className="form-signin-heading">Please sign in</h2>
           <div className="text-help has-danger">
             {this.state.errorMessage}

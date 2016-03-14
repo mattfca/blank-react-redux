@@ -5,7 +5,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        Protected
+        Dashboard
       </div>
     )
   }

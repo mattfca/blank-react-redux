@@ -15,14 +15,13 @@ class Login extends Component {
     };
   }
 
-
   componentWillMount(){
     if(this.props.isAuthenticated) this.context.router.push('/');
   }
 
   onSubmit(props){
     let self = this;
-    let login = this.props.loginUser(props).then(function(resp){
+    let login = this.props.loginUser(props).then(resp => {
       if(resp){
         if(resp.type == LOGIN_FAILURE){
           self.setState({errorMessage: resp.message});

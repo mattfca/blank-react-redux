@@ -27,6 +27,7 @@ class MetaData extends Component {
                 <th>Clicks</th>
                 <th>Conversions</th>
                 <th>Value</th>
+                <th>EPC</th>
               </tr>
             </thead>
             <tbody>
@@ -38,6 +39,7 @@ class MetaData extends Component {
                     <td>{prop.value.clicks}</td>
                     <td>{prop.value.conversions}</td>
                     <td>{prop.value.value}</td>
+                    <td>{prop.value.value / prop.value.clicks}</td>
                   </tr>
                 )
               })}

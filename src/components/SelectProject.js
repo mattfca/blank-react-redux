@@ -25,24 +25,25 @@ class SelectProject extends Component {
   }
 
   changeProject(e){
-    this.setState({currentProject: e.target.value}, this.fetchData)
+    this.setState({currentProject: e.target.value})
   }
 
   changeStartdate(e){
-    this.setState({startdate: e.target.value}, this.fetchData)
+    this.setState({startdate: e.target.value})
   }
 
   changeEnddate(e){
-    this.setState({enddate: e.target.value}, this.fetchData)
+    this.setState({enddate: e.target.value})
   }
 
-  fetchData(){
+  fetchData(e){
+    e.preventDefault();
     this.props.dispatch(fetchProjectData(this.state.currentProject, this.state.startdate, this.state.enddate));
   }
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.fetchData.bind(this)}>
         <div className="select-project form-group">
           <select className="form-control" onChange={this.changeProject.bind(this)}>
             <option/>
@@ -54,6 +55,9 @@ class SelectProject extends Component {
         </div>
         <div className="form-group">
           <input type="text" value={this.state.enddate} onChange={this.changeEnddate.bind(this)} />
+        </div>
+        <div className="form-group">
+          <input type="submit" value="submit" />
         </div>
       </form>
     )

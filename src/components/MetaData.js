@@ -25,9 +25,12 @@ class MetaData extends Component {
                 <th>Name</th>
                 <th>Impressions</th>
                 <th>Clicks</th>
+                <th>CTR</th>
                 <th>Conversions</th>
                 <th>Value</th>
                 <th>EPC</th>
+                <th>EPV</th>
+                <th>RPM</th>
               </tr>
             </thead>
             <tbody>
@@ -37,9 +40,12 @@ class MetaData extends Component {
                     <td>{prop.name}</td>
                     <td>{prop.value.impressions}</td>
                     <td>{prop.value.clicks}</td>
+                    <td>{prop.value.clicks / prop.value.impressions}</td>
                     <td>{prop.value.conversions}</td>
                     <td>{prop.value.value}</td>
                     <td>{prop.value.value / prop.value.clicks}</td>
+                    <td>{prop.value.value / prop.value.impressions}</td>
+                    <td>{prop.value.value / ( prop.value.impressions / 1000)}</td>
                   </tr>
                 )
               })}

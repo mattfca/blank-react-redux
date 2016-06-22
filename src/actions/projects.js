@@ -38,6 +38,11 @@ export function fetchProjects() {
 
     return request.then(function(resp){
        dispatch(receiveProjects(resp.data))
-    }).catch(err => dispatch(errorProjects("Error getting projects - catch")));
+    }).catch(err => {
+      if(err.status == '403'){
+        localStorage.removeItem('id_token');
+      }
+      dispatch(errorProjects("Error getting projects - catch"))
+    });
   }
 }

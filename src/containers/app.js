@@ -7,8 +7,7 @@ class App extends Component {
   };
 
   componentWillMount(){
-    if(!this.props.isAuthenticated) this.context.router.push('/login')
-      else this.context.router.push('/dashboard') 
+    
   }
 
   render() {
@@ -21,7 +20,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state){
-  return { isAuthenticated: state.auth.isAuthenticated };
+  return {  };
 }
 
 export default connect(mapStateToProps)(App);
